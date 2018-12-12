@@ -4,11 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
+"flake8" = "*"
 
 [packages]
 django = "*"
 django-debug-toolbar = "*"
 psycopg2 = "*"
+django-extensions = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

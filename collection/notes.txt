@@ -1,0 +1,25 @@
+{% comment %} Models {% endcomment %}
+class User(AbstractUser):
+    users_followed = models.ManyToManyField(
+        to = "User"
+        through = 'Follow'
+        through_fields=("following_user", "followed_user"),
+        related_name = "followers"
+    )
+
+
+class Follow(models.Model):
+    following_user = models.ForeignKey(User. on_delete=models.CASCADE related_name="follows_from")
+    followed_user = models.ForeignKey(User, on_delete=models.CASCADE related_name="follows_to")
+    created_at = models.DateTimeField(auto_now_add=True, null=False)
+
+
+
+{% comment %} Admin {% endcomment %}
+class FollowAdmin(admin.ModelAdmin):
+    list_display = ["following_user", "followed_user"]
+
+class FollowersInLine(admin.StackedInLine):
+    model = Follow
+    fk_name = "followed_user"
+    field = ("following_user")
